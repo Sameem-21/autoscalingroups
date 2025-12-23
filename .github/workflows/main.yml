@@ -25,8 +25,8 @@ jobs:
     - name: terraform showing data to be created
       run: terraform show -no-color planfile.out > planfile.txt
 
-    - name: terraform viewing the file
-      run: Select-String -Path planfile.txt -Pattern "will be created"
+    # - name: terraform viewing the file
+    #   run: Select-String -Path planfile.txt -Pattern "will be created"
 
     - name: terraform apply
       run: terraform apply planfile.out
