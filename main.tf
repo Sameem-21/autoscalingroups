@@ -172,8 +172,9 @@ resource "aws_vpc_security_group_egress_rule" "ec2_allow_all_outbound" {
 }
 #creatinh IAM Instance profile
 # 1. Create IAM role for EC2
+resource "random_pet" "suffix" {}
 resource "aws_iam_role" "ec2_role" {
-  name = "ec2-ssm-role"
+  name = "ec2-ssm-role-${random_pet.suffix.id}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -196,7 +197,7 @@ resource "aws_iam_role_policy_attachment" "ssm_core" {
 }
 # 3. Create instance profile
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "ec2-ssm-profile"
+  name = "ec2-ssm-role-${random_pet.suffix.id}"
   role = aws_iam_role.ec2_role.name
 }
 
