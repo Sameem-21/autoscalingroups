@@ -185,6 +185,9 @@ resource "aws_iam_role" "ec2_role" {
       Action = "sts:AssumeRole"
     }]
   })
+  lifecycle {
+    create_before_destroy = true 
+  }
 }
 # 2. Attach AmazonSSMManagedInstanceCore policy
 resource "aws_iam_role_policy_attachment" "ssm_core" {
@@ -273,7 +276,7 @@ resource "aws_lb" "app_load_balancer" {
   subnets                    = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id] #attaching the public subnets created
   enable_deletion_protection = false
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = true 
   }
 
   tags = {
