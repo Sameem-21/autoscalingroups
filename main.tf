@@ -207,7 +207,7 @@ resource "aws_launch_template" "web_launch_template" {
   #version = "$latest"
   image_id      = "ami-02d26659fd82cf299" #Amazon ubuntu AMI (HVM), SSD Volume Type
   instance_type = "t3.micro"
-  key_name      = "new-key-pair" #replace with your key pair name
+  key_name      = "test_apsouth1" #replace with your key pair name
 
   network_interfaces {
     associate_public_ip_address = true
